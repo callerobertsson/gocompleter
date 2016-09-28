@@ -13,6 +13,18 @@ type Completer struct {
 	m map[string]interface{}
 }
 
+// New() creates an empty Completer
+func New() Completer {
+	return Completer{
+		m: map[string]interface{}{},
+	}
+}
+
+// Add() adds an entry to the Completer map
+func (c Completer) Add(key string, val interface{}) {
+	c.m[key] = val
+}
+
 // NewFromMap() creates a Completer with an input map
 func NewFromMap(completerMap map[string]interface{}) Completer {
 	return Completer{

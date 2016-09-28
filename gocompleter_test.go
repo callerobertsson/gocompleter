@@ -32,6 +32,10 @@ func TestMatchHandler(t *testing.T) {
 			num: 3,
 		},
 		{
+			s:   "",
+			num: 4,
+		},
+		{
 			s:   "doesnotexist",
 			num: 0,
 		},
@@ -48,5 +52,19 @@ func TestMatchHandler(t *testing.T) {
 			t.Errorf("MatchHandler(%v) returned %v matches, expected %v",
 				c.s, len(ms), c.num)
 		}
+	}
+}
+
+func TestAddHandler(t *testing.T) {
+
+	m := New()
+	m.Add("a", "first a")
+	m.Add("b", "only b")
+	m.Add("a", "a overridden")
+
+	_, ms, _ := m.Match("")
+
+	if len(ms) != 2 {
+		t.Errorf("Expected 2 matches but got %d", len(ms))
 	}
 }
