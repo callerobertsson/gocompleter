@@ -1,3 +1,5 @@
+// Package completer provides the Completer usful for finding matching
+// entries in a map of string to interface{}
 package completer
 
 import (
@@ -6,18 +8,20 @@ import (
 	"strings"
 )
 
+// Completer provides function for finding matching completions
 type Completer struct {
 	m map[string]interface{}
 }
 
-func New(completerMap map[string]interface{}) Completer {
+// NewFromMap() creates a Completer with an input map
+func NewFromMap(completerMap map[string]interface{}) Completer {
 	return Completer{
 		m: completerMap,
 	}
 }
 
-// Finds a MapFunc from a partial matching key
-func (c Completer) Get(pkey string) (val interface{}, matches []string, err error) {
+// Match() finds matching entries in the map
+func (c Completer) Match(pkey string) (val interface{}, matches []string, err error) {
 
 	matches = c.matchingKeys(pkey)
 
@@ -35,6 +39,9 @@ func (c Completer) Get(pkey string) (val interface{}, matches []string, err erro
 	return
 }
 
+// matchingKeys() returns matching strings
+// If partial match it returns all matching entries
+// If exact match it returns the one matching only.
 func (c Completer) matchingKeys(str string) []string {
 
 	matchList := list.New()

@@ -17,7 +17,7 @@ func nilHandler(i interface{}) (interface{}, error) {
 	return nil, nil
 }
 
-func TestGetHandler(t *testing.T) {
+func TestMatchHandler(t *testing.T) {
 
 	cases := []struct {
 		s   string
@@ -37,15 +37,15 @@ func TestGetHandler(t *testing.T) {
 		},
 	}
 
-	fm := New(dummyMap)
+	fm := NewFromMap(dummyMap)
 
 	for _, c := range cases {
 
-		_, ms, _ := fm.Get(c.s)
+		_, ms, _ := fm.Match(c.s)
 
 		if len(ms) != c.num {
 
-			t.Errorf("GetHandler(%v) returned %v matches, expected %v",
+			t.Errorf("MatchHandler(%v) returned %v matches, expected %v",
 				c.s, len(ms), c.num)
 		}
 	}
