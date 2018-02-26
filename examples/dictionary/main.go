@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	comp "../../../gocompleter"
+	comp "github.com/callerobertsson/gocompleter"
 )
 
 // Path to the dictionary file
@@ -25,7 +25,7 @@ func main() {
 		os.Exit(0)
 	}
 
-	fmt.Println("Enter search term and return. Ctrl-C to exit")
+	fmt.Println("Enter partial search term and return. Ctrl-C to exit")
 	interact(c)
 }
 

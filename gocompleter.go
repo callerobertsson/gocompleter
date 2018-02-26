@@ -13,32 +13,32 @@ type Completer struct {
 	m map[string]interface{}
 }
 
-// New() creates an empty Completer
+// New creates an empty Completer
 func New() Completer {
 	return Completer{
 		m: map[string]interface{}{},
 	}
 }
 
-// Add() adds an entry to the Completer map
+// Add adds an entry to the Completer map
 func (c Completer) Add(key string, val interface{}) {
 	c.m[key] = val
 }
 
-// NewFromMap() creates a Completer with an input map
+// NewFromMap creates a Completer with an input map
 func NewFromMap(completerMap map[string]interface{}) Completer {
 	return Completer{
 		m: completerMap,
 	}
 }
 
-// Match() finds matching entries in the map
+// Match finds matching entries in the map
 func (c Completer) Match(pkey string) (val interface{}, matches []string, err error) {
 
 	matches = c.matchingKeys(pkey)
 
 	if len(matches) != 1 {
-		err = errors.New("No unique match found")
+		err = errors.New("no unique match found")
 		return
 	}
 
@@ -46,12 +46,12 @@ func (c Completer) Match(pkey string) (val interface{}, matches []string, err er
 		return val, matches, nil
 	}
 
-	err = errors.New("Handler for command %q not found")
+	err = errors.New("handler for command %q not found")
 
 	return
 }
 
-// matchingKeys() returns matching strings
+// matchingKeys returns matching strings
 // If partial match it returns all matching entries
 // If exact match it returns the one matching only.
 func (c Completer) matchingKeys(str string) []string {

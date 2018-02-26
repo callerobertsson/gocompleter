@@ -1,10 +1,9 @@
+// Package completer unit tests
 package completer
 
 import (
 	"testing"
 )
-
-type handlerFunc func(interface{}) (interface{}, error)
 
 var dummyMap = map[string]interface{}{
 	"a":   nilHandler,
